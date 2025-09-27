@@ -36,11 +36,6 @@ A simple web application that allows you to search for GitHub users and explore 
 
 ---
 
-## 📂 Project Structure
-
-
----
-
 ## ⚙️ Setup & Usage
 
 1. Clone or download this repository.
@@ -61,7 +56,3 @@ A simple web application that allows you to search for GitHub users and explore 
 - **GitHub REST API** – Fetching user and repository data  
 
 ---
-
-## 📜 License
-
-This project is licensed under the MIT License.
