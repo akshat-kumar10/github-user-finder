@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub User Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="header__title">GitHub User Finder</h1>
+            <p class="header__subtitle">Search for GitHub users and explore their repositories</p>
+        </header>
+
+        <!-- Search Form -->
+        <section class="search-section">
+            <form class="search-form" id="searchForm">
+                <div class="search-form__group">
+                    <label for="usernameInput" class="form-label">GitHub Username</label>
+                    <div class="search-form__input-group">
+                        <input 
+                            type="text" 
+                            id="usernameInput" 
+                            class="form-control search-form__input"
+                            placeholder="Enter GitHub username (e.g., octocat)"
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit" class="btn btn--primary search-form__button" id="searchButton">
+                            <span class="search-button-text">🔍 Search</span>
+                            <span class="search-button-loading hidden">
+                            
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Error Message -->
+        <section class="error-section hidden" id="errorSection">
+            <div class="error-message">
+                <div class="error-message__icon">⚠️</div>
+                <div class="error-message__content">
+                    <h3 class="error-message__title" id="errorTitle">Error</h3>
+                    <p class="error-message__text" id="errorText"></p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Idle GitHub Graphic -->
+        <section class="github-graphic-section"     id="graphicSection" aria-hidden="false">
+          <div class="github-graphic">
+            <img src="images/logo.png" 
+                 alt="GitHub Octocat" 
+                 class="github-octocat"/>
+            <p class="github-graphic__text">Start by searching for a GitHub user above.</p>
+          </div>
+        </section>
+
+        <!-- Loading State -->
+        <section class="loading-section hidden" id="loadingSection">
+            <div class="loading-card">
+                <div class="loading-spinner-large"></div>
+                <p>Fetching user data...</p>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section hidden" id="resultsSection">
+            <!-- User Profile -->
+            <div class="user-profile" id="userProfile">
+                <div class="card user-profile__card">
+                    <div class="card__body">
+                        <div class="user-profile__header">
+                            <img class="user-profile__avatar" id="userAvatar" alt="User avatar">
+                            <div class="user-profile__basic">
+                                <h2 class="user-profile__username" id="userName"></h2>
+                                <p class="user-profile__login" id="userLogin"></p>
+                                <p class="user-profile__bio" id="userBio"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="user-profile__stats">
+                            <div class="stat">
+                                <span class="stat__number" id="followersCount">0</span>
+                                <span class="stat__label">Followers</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat__number" id="followingCount">0</span>
+                                <span class="stat__label">Following</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat__number" id="reposCount">0</span>
+                                <span class="stat__label">Repositories</span>
+                            </div>
+                        </div>
+
+                        <div class="user-profile__details">
+                            <div class="detail-item" id="locationDetail">
+                                <span class="detail-item__icon">📍</span>
+                                <span class="detail-item__text" id="userLocation"></span>
+                            </div>
+                            <div class="detail-item" id="companyDetail">
+                                <span class="detail-item__icon">🏢</span>
+                                <span class="detail-item__text" id="userCompany"></span>
+                            </div>
+                            <div class="detail-item" id="blogDetail">
+                                <span class="detail-item__icon">🔗</span>
+                                <a class="detail-item__link" id="userBlog" target="_blank"></a>
+                            </div>
+                            <div class="detail-item" id="joinedDetail">
+                                <span class="detail-item__icon">📅</span>
+                                <span class="detail-item__text">Joined <span id="userJoined"></span></span>
+                            </div>
+                        </div>
+
+                        <div class="user-profile__actions">
+                            <a class="btn btn--outline" id="profileLink" target="_blank">
+                                View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repositories Section -->
+            <div class="repositories-section" id="repositoriesSection">
+                <div class="repositories-header">
+                    <h3 class="repositories-title">Repositories</h3>
+                    <div class="repositories-controls">
+                        <select class="form-control repositories-sort" id="sortSelect">
+                            <option value="updated">Recently Updated</option>
+                            <option value="stars">Most Stars</option>
+                            <option value="created">Recently Created</option>
+                            <option value="name">Alphabetical</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="repositories-list" id="repositoriesList">
+                    <!-- Repository cards will be inserted here -->
+                </div>
+
+                <div class="no-repositories hidden" id="noRepositories">
+                    <div class="no-repositories__content">
+                        <div class="no-repositories__icon">📁</div>
+                        <h4 class="no-repositories__title">No Repositories Found</h4>
+                        <p class="no-repositories__text">This user doesn't have any public repositories.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
